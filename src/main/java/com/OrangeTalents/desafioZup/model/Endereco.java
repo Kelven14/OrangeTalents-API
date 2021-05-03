@@ -11,7 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "tb_endereco")
@@ -19,53 +20,35 @@ public class Endereco implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank(message = "O campo não pode está em branco")
+	@NotBlank(message = "O logradouro não pode está em branco")
 	private String logradouro;
 
 	@Min(1)
-	@NotBlank(message = "O campo não pode está em branco")
+	@NotNull
 	private int numero;
 
-	@NotBlank(message = "O campo não pode está em branco")
+	@NotBlank(message = "O complemento não pode está em branco")
 	private String complemento;
 
-	@NotBlank(message = "O campo não pode está em branco")
+	@NotBlank(message = "O bairro não pode está em branco")
 	private String bairro;
 
-	@NotBlank(message = "O campo não pode está em branco")
+	@NotBlank(message = "A cidade não pode está em branco")
 	private String cidade;
 
-	@NotBlank(message = "O campo não pode está em branco")
+	@NotBlank(message = "O estado não pode está em branco")
 	private String estado;
 
-	@NotBlank(message = "O campo não pode está em branco")
+	@NotBlank(message = "O cep não pode está em branco")
 	private String cep;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
-
-	// Construtores
-	public Endereco() {
-		super();
-	}
-
-	public Endereco(Long id, String logradouro, int numero, String complemento, String bairro, String cidade,
-			String estado, String cep, Usuario usuario) {
-		super();
-		this.id = id;
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.estado = estado;
-		this.cep = cep;
-		this.usuario = usuario;
-	}
 
 	// Métodos Getters e Setters
 	public Long getId() {
